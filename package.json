@@ -1,0 +1,41 @@
+{
+  "name": "pawjs-barebone",
+  "version": "1.0.0",
+  "description": "PawJS Barebone",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "pawjs --no-cache --env=development start",
+    "build": "pawjs --no-cache --config=./prod.pawconfig.json --env=production build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atyantik/pawjs-barebone.git"
+  },
+  "keywords": [
+    "pawjs",
+    "react-pwa",
+    "barebone",
+    "hello-world"
+  ],
+  "author": {
+    "name": "Yash Thakur",
+    "email": "thakur.yash514@gmail.com",
+    "url": "http://yashthakur.in/"
+  },
+  "contributors": [
+    {
+      "name": "Atyantik Technologies Private Limited",
+      "email": "admin@atyantik.com",
+      "url": "https://www.atyantik.com/"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/atyantik/pawjs-barebone/issues"
+  },
+  "homepage": "https://github.com/atyantik/pawjs-barebone#readme",
+  "dependencies": {
+    "@pawjs/pawjs": "^2.2.10",
+    "react": "^16.6.3"
+  }
+}
