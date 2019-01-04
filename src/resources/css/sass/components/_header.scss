@@ -1,0 +1,231 @@
+.site-header {
+    background-color: $dark-gray;
+    height: 65px;
+    display: inline-block;
+    width: 100%;
+    padding: 1em 1.5em;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+
+    .top-bar {
+        width: 100%;
+        display: inline-block;
+    }
+
+    .logo {
+        max-width: 100px;
+        display: inline-block;
+        float: left;
+    }
+
+    .nav-toggle {
+        width: 38px;
+        height: 28px;
+        position: relative;
+        margin: 0 auto;
+        @include transform(rotate(0deg));
+        @include transition(.5s ease-in-out);
+        cursor: pointer;
+        float: right;
+        margin: .25em 0 0 0;
+
+        span {
+            display: block;
+            position: absolute;
+            height: 4px;
+            width: 100%;
+            background: $white;
+            border-radius: 8px;
+            opacity: 1;
+            left: 0;
+            @include transform(rotate(0deg));
+            @include transition(.25s ease-in-out);
+
+            &:nth-child(1) {
+                top: 0;
+            }
+
+            &:nth-child(2),
+            &:nth-child(3) {
+                top: 11px;
+            }
+
+            &:nth-child(4) {
+                top: 22px;
+            }
+        }
+    }
+
+    .side-nav {
+        background-color: $white;
+        position: fixed;
+        right: 0;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+        width: 15em;
+        margin-right: -15em;
+        @include transition(.3s all linear);
+        z-index: 99;
+
+        .nav {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+
+            a {
+                color: $light-gray;
+                padding: .75em 1em;
+                display: block;
+                border-bottom: 1px solid rgba(0, 0, 0, .1);
+                text-transform: uppercase;
+                font-weight: 600;
+
+                &:hover {
+                    background-color: $body-bg;
+                    color: $brand-color;
+                }
+            }
+        }
+
+        .nav-logo {
+            padding: 1em;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, .1);
+
+            img {
+                max-width: 100px;
+            }
+        }
+    }
+
+    .header-link {
+        color: $white;
+        padding: .25em 1em;
+        display: inline-block;
+    }
+}
+
+.dropdown-toggle {
+    position: relative;
+    display: inline-block;
+    padding-right: 1em;
+
+    .profile-img {
+        display: inline-block;
+
+        img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+    }
+
+    .name {
+        display: inline-block;
+        vertical-align: top;
+        color: $white;
+        padding: .3em .5em;
+    }
+}
+
+.navbar-account {
+    position: relative;
+    display: inline-block;
+    &.open {
+        .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+       
+.secondary-nav {
+    background-color: #f3f3f3;
+}
+
+.sidebar-overlay {
+    background-color: rgba(255, 255, 255, .3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    z-index: 9;
+    visibility: hidden;
+    opacity: 0;
+    @include transition(.3s all linear);
+}
+
+.page-wrapper {
+    position: relative;
+    overflow: hidden;
+
+    &.open {
+        .side-nav {
+            margin-right: 0;
+        }
+
+        .nav-toggle {
+            span {
+                &:nth-child(1) {
+                    top: 11px;
+                    width: 0%;
+                    left: 50%;
+                }
+
+                &:nth-child(2) {
+                    @include transform(rotate(45deg));
+                }
+
+                &:nth-child(3) {
+                    @include transform(rotate(-45deg));
+                }
+
+                &:nth-child(4) {
+                    top: 11px;
+                    width: 0%;
+                    left: 50%;
+                }
+            }
+        }
+
+        .sidebar-overlay {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}
+
+@media(max-width: 767px) {
+    .site-header {
+        padding: 1em;
+
+        .logo {
+            max-width: 90px;
+        }
+
+        .nav-toggle {
+            width: 24px;
+            height: 20px;
+            margin-top: .5em;
+            span {
+                height: 2px;
+                &:nth-child(2),
+                &:nth-child(3) {
+                    top: 8px;
+                }
+
+                &:nth-child(4) {
+                    top: 16px;
+                }
+            }
+        }
+        .header-link {
+            display: none;
+        }
+    }
+}
