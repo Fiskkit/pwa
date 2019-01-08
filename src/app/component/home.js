@@ -1,12 +1,72 @@
 import React from 'react';
-import Logo from '../../resources/images/logo.png';
-// import '../../resources/css/style.scss';
+import _ from 'lodash';
+
+// Local imports
+import FiskBlock from './fisk-block';
+import Pagination from './pagination';
+import { getRequestUrl } from '../utils/search-utils';
+
+// Images
+import RedLogo from '../../resources/images/fiskkit-red-black-logo.png';
+
+
+const sortTypes = {
+  recent: 'created',
+  mostFisked: 'fisk_count',
+};
 
 // eslint-disable-next-line
 export default class Home extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.defaultSearchParams = {
+      display_respected_comment: 0,
+      limit: 9,
+      offset: 0,
+      sort: sortTypes.recent,
+    };
+    this.state = {
+      sort: sortTypes.recent,
+      articles: [],
+      meta: {},
+    };
+  }
+
+  componentDidMount() {
+    this.getArticles();
+  }
+
+  getArticles = () => {
+    const { sort } = this.state;
+    const requestUrl = getRequestUrl('/articles', _.assignIn({}, this.defaultSearchParams, {
+      sort,
+    }));
+    return fetch(requestUrl, {
+      'content-type': 'application/json',
+      'cache-control': 'no-cache',
+    })
+      .then(res => res.json())
+      .then((response) => {
+        const { articles, meta } = response;
+        this.setState({
+          articles,
+          meta,
+        });
+      })
+      .catch(err => console.log('err', err));
+  };
+
+  renderFiskBlock() {
+    const { articles } = this.state;
+    return _.map(articles, article => (
+      <FiskBlock key={article.id}/>
+    ));
+  }
+
   render() {
     return (
-      <main>
+      <div>
         <div className="banner">
           <div className="banner-img">
             <div className="banner-content text-center">
@@ -25,7 +85,7 @@ export default class Home extends React.Component {
         <div className="site-content">
           <div className="contanier contanier-md">
             <div className="tagline-section text-center">
-              <img src={Logo} alt="Fiskkit logo" />
+              <img src={RedLogo} alt="Fiskkit logo" />
               <p className="tagline">A better way to discuss the news</p>
             </div>
             <div className="sorting-tabs">
@@ -43,150 +103,13 @@ export default class Home extends React.Component {
             </div>
             <div className="article-section">
               <div className="row">
-                <div className="col col-lg-3 col-md-6">
-                  <div className="card">
-                    <div className="card-body">
-                      <div className="card-img">
-                        <a
-                          href="#"
-                          className="bg-img"
-                        />
-                      </div>
-                      <div className="card-content">
-                        <h4 className="card-title">
-                          <a href="#">
-                            Corporate Speech Police Are Not the Answer to Online Hate
-                          </a>
-                        </h4>
-                        <div className="details">
-                          <div className="float-left">
-                            <span>By Corynne McSherry</span>
-                            <span>Electronic Frontier Foundation</span>
-                          </div>
-                          <div className="float-right">
-                            <span className="time">7 min read</span>
-                          </div>
-                        </div>
-                        <div className="share-details">
-                          <div className="float-left">
-                            <span className="date">October 27, 2018</span>
-                          </div>
-                          <div className="float-right">
-                            <a href="#" className="icon">
-                              <span className="round-icon">
-                                <i className="fa fa-pencil" />
-                            </span>
-                              <span className="count">6</span>
-                            </a>
-                            <a href="#" className="icon">
-                              <span className="round-icon">
-                                <i className="fa fa-share" />
-                            </span>
-                              <span className="count">3</span>
-                            </a>
-                          </div>
-
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col col-lg-3 col-md-6">
-                  <div className="card">
-                    <div className="card-body">
-                      <div className="card-img">
-                        <a
-                          href="#"
-                          className="bg-img"
-                        />
-                      </div>
-                      <div className="card-content">
-                        <h4 className="card-title">
-                          <a href="#">Corporate Speech Police Are Not the Answer to Online Hate</a>
-                        </h4>
-                        <div className="details">
-                          <div className="float-left">
-                            <span>By Corynne McSherry</span>
-                            <span>Electronic Frontier Foundation</span>
-                          </div>
-                          <div className="float-right">
-                            <span className="time">7 min read</span>
-                          </div>
-                        </div>
-                        <div className="share-details">
-                          <div className="float-left">
-                            <span className="date">October 27, 2018</span>
-                          </div>
-                          <div className="float-right">
-                            <a href="#" className="icon">
-                              <span className="round-icon">
-                                <i className="fa fa-pencil"></i>
-                            </span>
-                              <span className="count">6</span>
-                            </a>
-                            <a href="#" className="icon">
-                              <span className="round-icon">
-                                <i className="fa fa-share"></i>
-                            </span>
-                              <span className="count">3</span>
-                            </a>
-                          </div>
-
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col col-lg-3 col-md-6">
-                  <div className="card">
-                    <div className="card-body">
-                      <div className="card-img">
-                        <a
-                          href="#"
-                          className="bg-img"
-                        />
-                      </div>
-                      <div className="card-content">
-                        <h4 className="card-title">
-                          <a href="#">Corporate Speech Police Are Not the Answer to Online Hate</a>
-                        </h4>
-                        <div className="details">
-                          <div className="float-left">
-                            <span>By Corynne McSherry</span>
-                            <span>Electronic Frontier Foundation</span>
-                          </div>
-                          <div className="float-right">
-                            <span className="time">7 min read</span>
-                          </div>
-                        </div>
-                        <div className="share-details">
-                          <div className="float-left">
-                            <span className="date">October 27, 2018</span>
-                          </div>
-                          <div className="float-right">
-                            <a href="#" className="icon">
-                              <span className="round-icon">
-                                <i className="fa fa-pencil" />
-                              </span>
-                              <span className="count">6</span>
-                            </a>
-                            <a href="#" className="icon">
-                              <span className="round-icon">
-                                <i className="fa fa-share" />
-                              </span>
-                              <span className="count">3</span>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                {this.renderFiskBlock()}
               </div>
+              <Pagination />
             </div>
           </div>
         </div>
-      </main>
+      </div>
     );
   }
 }

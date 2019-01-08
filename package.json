@@ -20,6 +20,7 @@
   "dependencies": {
     "@pawjs/pawjs": "^2.2.11",
     "@pawjs/sass": "^2.1.7",
+    "lodash": "^4.17.11",
     "react": "^16.7.0-alpha.0",
     "react-cookie": "^3.0.8",
     "react-dom": "^16.7.0-alpha.0",

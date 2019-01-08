@@ -1,7 +1,6 @@
-/**
-* Created by ankushtiwari on 4/1/19.
-*/
 import React from 'react';
+
+// Images
 import Logo from '../../resources/images/logo.png';
 import RedLogo from '../../resources/images/fiskkit-red-black-logo.png';
 
