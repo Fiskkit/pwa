@@ -1,4 +1,6 @@
 import React from 'react';
+// eslint-disable-next-line
+import { PropTypes } from 'prop-types';
 
 // Images
 import Logo from '../../resources/images/logo.png';
@@ -7,7 +9,17 @@ import RedLogo from '../../resources/images/fiskkit-red-black-logo.png';
 
 // eslint-disable-next-line
 export default class Header extends React.Component {
+  static propTypes = {
+    toggleWrapperClass: PropTypes.func,
+  };
+
+  static defaultProps = {
+    toggleWrapperClass: () => {},
+  };
+
   render() {
+    const { toggleWrapperClass } = this.props;
+
     return (
       <header>
         <div className="site-header">
@@ -26,7 +38,14 @@ export default class Header extends React.Component {
                   <span className="name">Hello, User</span>
                 </a>
               </div>
-              <div className="nav-toggle">
+              <div
+                className="nav-toggle"
+                onClick={() => toggleWrapperClass()}
+              >
+                <span />
+                <span />
+                <span />
+                <span />
               </div>
             </div>
           </div>
@@ -65,7 +84,10 @@ export default class Header extends React.Component {
               </ul>
             </div>
           </div>
-          <div className="sidebar-overlay" />
+          <div
+            className="sidebar-overlay"
+            onClick={() => toggleWrapperClass()}
+          />
         </div>
       </header>
     );

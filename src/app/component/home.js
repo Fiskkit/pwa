@@ -27,10 +27,11 @@ export default class Home extends React.Component {
       sort: sortTypes.recent,
     };
     this.state = {
-      loading: true,
+      loading: false,
       sort: sortTypes.recent,
       articles: [],
       meta: {},
+      searchParams: this.defaultSearchParams,
     };
   }
 
@@ -38,11 +39,22 @@ export default class Home extends React.Component {
     this.getArticles();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (!_.isEqual(_.get(prevState, 'searchParams', ''), _.get(this.state, 'searchParams', ''))
+      || !_.isEqual(_.get(prevState, 'sort', ''), _.get(this.state, 'sort', ''))
+    ) {
+      this.getArticles();
+    }
+  }
+
   getArticles = () => {
-    const { sort } = this.state;
-    const requestUrl = getRequestUrl('/articles', _.assignIn({}, this.defaultSearchParams, {
+    const { searchParams, sort } = this.state;
+    const requestUrl = getRequestUrl('/articles', _.assignIn({}, searchParams, {
       sort,
     }));
+    this.setState({
+      loading: true,
+    });
     return fetch(requestUrl, {
       'content-type': 'application/json',
       'cache-control': 'no-cache',
@@ -59,6 +71,12 @@ export default class Home extends React.Component {
       .catch(err => console.log('err', err));
   };
 
+  updateSearchParams(searchParams) {
+    this.setState({
+      searchParams,
+    });
+  }
+
   renderFiskBlock() {
     const { articles } = this.state;
     return _.map(articles, article => (
@@ -67,7 +85,9 @@ export default class Home extends React.Component {
   }
 
   render() {
-    const { loading } = this.state;
+    const {
+      loading, searchParams, meta, sort,
+    } = this.state;
     if (loading) return (<div>Loading...</div>);
     return (
       <div>
@@ -94,14 +114,45 @@ export default class Home extends React.Component {
             </div>
             <div className="sorting-tabs">
               <ul>
+                {/*
                 <li>
-                  <a href="#" className="tab">Social Feed</a>
+                  <a
+                    href="#"
+                    className="tab"
+                  >
+                    Social Feed
+                  </a>
                 </li>
-                <li className="active">
-                  <a href="#" className="tab">Most Recent</a>
+                */}
+                <li className={sort === sortTypes.recent ? 'active' : ''}>
+                  <a
+                    href="#"
+                    className="tab"
+                    onClick={() => {
+                      if (sort === sortTypes.mostFisked) {
+                        this.setState({
+                          sort: sortTypes.recent,
+                        });
+                      }
+                    }}
+                  >
+                    Most Recent
+                  </a>
                 </li>
-                <li>
-                  <a href="#" className="tab">Most Fisked</a>
+                <li className={sort === sortTypes.mostFisked ? 'active' : ''}>
+                  <a
+                    href="#"
+                    className="tab"
+                    onClick={() => {
+                      if (sort === sortTypes.recent) {
+                        this.setState({
+                          sort: sortTypes.mostFisked,
+                        });
+                      }
+                    }}
+                  >
+                    Most Fisked
+                  </a>
                 </li>
               </ul>
             </div>
@@ -109,7 +160,16 @@ export default class Home extends React.Component {
               <div className="row">
                 {this.renderFiskBlock()}
               </div>
-              <Pagination />
+              {
+                !!_.get(meta, 'count', false)
+                && (
+                  <Pagination
+                    meta={meta}
+                    searchParams={searchParams}
+                    updateSearchParams={params => this.updateSearchParams(params)}
+                  />
+                )
+              }
             </div>
           </div>
         </div>

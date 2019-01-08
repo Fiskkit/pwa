@@ -46,7 +46,6 @@ class Article extends React.Component {
   };
 
   getFisks = () => {
-    console.log('getArticle', this.props);
     const { match } = this.props;
     const requestUrl = `https://api.fiskkit.com/api/v1/fisks?limit=20&article_id=${_.get(match, 'params,article', '')}&sort=respect|desc&most_respected_comment=1`;
 
@@ -55,8 +54,8 @@ class Article extends React.Component {
       'cache-control': 'no-cache',
     })
       .then(res => res.json())
-      .then((response) => {
-        console.log('response', response);
+      .then(() => {
+        // console.log('response', response);
         // const { articles, meta } = response;
         // this.setState({
         //   articles,
