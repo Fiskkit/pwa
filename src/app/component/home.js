@@ -8,6 +8,7 @@ import { getRequestUrl } from '../utils/search-utils';
 
 // Images
 import RedLogo from '../../resources/images/fiskkit-red-black-logo.png';
+import Banner from '../../resources/images/banner.jpg'
 
 
 const sortTypes = {
@@ -92,7 +93,10 @@ export default class Home extends React.Component {
     return (
       <div>
         <div className="banner">
-          <div className="banner-img">
+          <div
+            className="banner-img"
+            style={{ backgroundImage: Banner }}
+          >
             <div className="banner-content text-center">
               <h3 className="banner-title">
                 A platform for civil, fact-based, and engaging discussions
