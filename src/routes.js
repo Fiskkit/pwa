@@ -1,6 +1,7 @@
 // eslint-disable-next-line
 import React from 'react';
 import Home from './app/component/home';
+import Article from './app/component/article';
 import Layout from './app/component/layout';
 
 export default class Routes {
@@ -12,6 +13,12 @@ export default class Routes {
         exact: true,
         layout: Layout,
         component: Home,
+      },
+      {
+        path: '/article/:articleId',
+        exact: true,
+        layout: Layout,
+        component: Article,
       },
     ];
 

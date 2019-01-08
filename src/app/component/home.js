@@ -27,6 +27,7 @@ export default class Home extends React.Component {
       sort: sortTypes.recent,
     };
     this.state = {
+      loading: true,
       sort: sortTypes.recent,
       articles: [],
       meta: {},
@@ -52,6 +53,7 @@ export default class Home extends React.Component {
         this.setState({
           articles,
           meta,
+          loading: false,
         });
       })
       .catch(err => console.log('err', err));
@@ -60,11 +62,13 @@ export default class Home extends React.Component {
   renderFiskBlock() {
     const { articles } = this.state;
     return _.map(articles, article => (
-      <FiskBlock key={article.id}/>
+      <FiskBlock key={article.id} article={article} />
     ));
   }
 
   render() {
+    const { loading } = this.state;
+    if (loading) return (<div>Loading...</div>);
     return (
       <div>
         <div className="banner">
