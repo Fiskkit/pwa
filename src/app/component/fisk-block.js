@@ -63,7 +63,7 @@ export default class FiskBlock extends React.Component {
                     <span className="round-icon">
                       <i className="fa fa-pencil" />
                     </span>
-                    <span className="count">
+                    <span className="count" style={{ marginLeft: '4px' }}>
                       {_.get(article, 'fisk_count', '')}
                     </span>
                   </a>
@@ -71,7 +71,7 @@ export default class FiskBlock extends React.Component {
                     <span className="round-icon">
                       <i className="fa fa-share" />
                     </span>
-                    <span className="count">
+                    <span className="count" style={{ marginLeft: '4px' }}>
                       {_.get(article, 'share_count', '')}
                     </span>
                   </a>
