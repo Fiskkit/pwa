@@ -111,6 +111,7 @@ export default class ArticlesGrid extends React.Component {
                     if (e && e.preventDefault) e.preventDefault();
                     if (sort === sortTypes.mostFisked) {
                       this.setState({
+                        searchParams: this.defaultSearchParams,
                         sort: sortTypes.recent,
                       });
                     }
@@ -127,6 +128,7 @@ export default class ArticlesGrid extends React.Component {
                     if (e && e.preventDefault) e.preventDefault();
                     if (sort === sortTypes.recent) {
                       this.setState({
+                        searchParams: this.defaultSearchParams,
                         sort: sortTypes.mostFisked,
                       });
                     }
