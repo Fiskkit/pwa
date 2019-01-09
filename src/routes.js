@@ -38,49 +38,49 @@ export default class Routes {
         icons: [
         ],
       });
-      // eslint-disable-next-line
-      routeHandler.getDefaultSeoSchema = () => ({
-        title: 'Fiskkit',
-        name: 'Fiskkit',
-        description: 'A better way to discuss the news',
-        type: 'website',
-        url: 'http://fiskkit.com/',
-        site_name: 'fiskkit.com',
-        meta: [
-          {
-            name: 'author',
-            content: '',
-          },
-          {
-            name: 'description',
-            content: 'A better way to discuss the news',
-          },
-          {
-            name: 'theme-color',
-            content: '#111',
-          },
-          {
-            name: 'apple-mobile-web-app-status-bar-style',
-            content: '#111',
-          },
-          {
-            name: 'msapplication-TileColor',
-            content: '#111',
-          },
-          {
-            name: 'application-name',
-            content: 'Fiskkit',
-          },
-          {
-            name: 'generator',
-            content: 'Fiskkit',
-          },
-          {
-            name: 'apple-mobile-web-app-title',
-            content: 'Fiskkit',
-          },
-        ],
-      });
+      // // eslint-disable-next-line
+      // routeHandler.getDefaultSeoSchema = () => ({
+      //   title: 'Fiskkit',
+      //   name: 'Fiskkit',
+      //   description: 'A better way to discuss the news',
+      //   type: 'website',
+      //   url: 'http://fiskkit.com/',
+      //   site_name: 'fiskkit.com',
+      //   meta: [
+      //     {
+      //       name: 'author',
+      //       content: '',
+      //     },
+      //     {
+      //       name: 'description',
+      //       content: 'A better way to discuss the news',
+      //     },
+      //     {
+      //       name: 'theme-color',
+      //       content: '#111',
+      //     },
+      //     {
+      //       name: 'apple-mobile-web-app-status-bar-style',
+      //       content: '#111',
+      //     },
+      //     {
+      //       name: 'msapplication-TileColor',
+      //       content: '#111',
+      //     },
+      //     {
+      //       name: 'application-name',
+      //       content: 'Fiskkit',
+      //     },
+      //     {
+      //       name: 'generator',
+      //       content: 'Fiskkit',
+      //     },
+      //     {
+      //       name: 'apple-mobile-web-app-title',
+      //       content: 'Fiskkit',
+      //     },
+      //   ],
+      // });
     });
   }
 }
