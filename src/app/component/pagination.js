@@ -41,9 +41,12 @@ export default class Pagination extends React.Component {
               <li className={currentPage === 1 ? 'current' : ''}>
                 <a
                   href="#"
-                  onClick={() => updateSearchParams(_.assignIn({}, searchParams, {
-                    offset: 0,
-                  }))}
+                  onClick={(e) => {
+                    if (e && e.preventDefault) e.preventDefault();
+                    updateSearchParams(_.assignIn({}, searchParams, {
+                      offset: 0,
+                    }));
+                  }}
                 >
                   1
                 </a>
@@ -63,9 +66,12 @@ export default class Pagination extends React.Component {
               <li>
                 <a
                   href="#"
-                  onClick={() => updateSearchParams(_.assignIn({}, searchParams, {
-                    offset: currentOffset - 9,
-                  }))}
+                  onClick={(e) => {
+                    if (e && e.preventDefault) e.preventDefault();
+                    updateSearchParams(_.assignIn({}, searchParams, {
+                      offset: currentOffset - 9,
+                    }));
+                  }}
                 >
                   {currentPage - 1}
                 </a>
@@ -92,9 +98,12 @@ export default class Pagination extends React.Component {
               <li>
                 <a
                   href="#"
-                  onClick={() => updateSearchParams(_.assignIn({}, searchParams, {
-                    offset: currentOffset + 9,
-                  }))}
+                  onClick={(e) => {
+                    if (e && e.preventDefault) e.preventDefault();
+                    updateSearchParams(_.assignIn({}, searchParams, {
+                      offset: currentOffset + 9,
+                    }));
+                  }}
                 >
                   {currentPage + 1}
                 </a>
@@ -113,10 +122,13 @@ export default class Pagination extends React.Component {
 
               <li>
                 <a
-                  href='#'
-                  onClick={() => updateSearchParams(_.assignIn({}, searchParams, {
-                    offset: (totalPages - 1) * 9,
-                  }))}
+                  href="#"
+                  onClick={(e) => {
+                    if (e && e.preventDefault) e.preventDefault();
+                    updateSearchParams(_.assignIn({}, searchParams, {
+                      offset: (totalPages - 1) * 9,
+                    }));
+                  }}
                 >
                   {totalPages}
                 </a>

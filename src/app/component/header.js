@@ -25,16 +25,34 @@ export default class Header extends React.Component {
         <div className="site-header">
           <div className="top-bar">
             <div className="float-left">
-              <a href="#" className="logo">
+              <a
+                href="#"
+                className="logo"
+                onClick={(e) => {
+                  if (e && e.preventDefault) e.preventDefault();
+                }}
+              >
                 <img src={Logo} alt="Fiskit Logo" />
               </a>
-              <a href="#" className="header-link">
+              <a
+                href="#"
+                className="header-link"
+                onClick={(e) => {
+                  if (e && e.preventDefault) e.preventDefault();
+                }}
+              >
                 What is Fiskkit?
               </a>
             </div>
             <div className="float-right">
               <div className="navbar-account">
-                <a href="#" className="dropdown-toggle">
+                <a
+                  href="#"
+                  className="dropdown-toggle"
+                  onClick={(e) => {
+                    if (e && e.preventDefault) e.preventDefault();
+                  }}
+                >
                   <span className="name">Hello, User</span>
                 </a>
               </div>
@@ -55,31 +73,87 @@ export default class Header extends React.Component {
             </div>
             <ul className="nav">
               <li>
-                <a href="#">About</a>
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    if (e && e.preventDefault) e.preventDefault();
+                  }}
+                >
+                  About
+                </a>
               </li>
               <li>
-                <a href="#">Organizations</a>
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    if (e && e.preventDefault) e.preventDefault();
+                  }}
+                >
+                  Organizations
+                </a>
               </li>
               <li>
-                <a href="#">FAQ</a>
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    if (e && e.preventDefault) e.preventDefault();
+                  }}
+                >
+                  FAQ
+                </a>
               </li>
               <li>
-                <a href="#">Terms of Service</a>
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    if (e && e.preventDefault) e.preventDefault();
+                  }}
+                >
+                  Terms of Service
+                </a>
               </li>
               <li>
-                <a href="#">Our Team</a>
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    if (e && e.preventDefault) e.preventDefault();
+                  }}
+                >
+                  Our Team
+                </a>
               </li>
             </ul>
             <div>
               <ul className="nav secondary-nav">
                 <li>
-                  <a href="#">My profile</a>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      if (e && e.preventDefault) e.preventDefault();
+                    }}
+                  >
+                    My profile
+                  </a>
                 </li>
                 <li>
-                  <a href="#">Settings</a>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      if (e && e.preventDefault) e.preventDefault();
+                    }}
+                  >
+                    Settings
+                  </a>
                 </li>
                 <li>
-                  <a href="#">Logout</a>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      if (e && e.preventDefault) e.preventDefault();
+                    }}
+                  >
+                    Logout
+                  </a>
                 </li>
               </ul>
             </div>

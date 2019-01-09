@@ -22,6 +22,7 @@ export default class Layout extends React.Component {
     const { children } = this.props;
     const { wrapperClass } = this.state;
 
+
     return (
       <div className={wrapperClass}>
         <Header

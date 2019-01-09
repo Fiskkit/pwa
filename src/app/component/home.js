@@ -8,7 +8,7 @@ import { getRequestUrl } from '../utils/search-utils';
 
 // Images
 import RedLogo from '../../resources/images/fiskkit-red-black-logo.png';
-import Banner from '../../resources/images/banner.jpg'
+import Banner from '../../resources/images/banner.jpg';
 
 
 const sortTypes = {
@@ -95,7 +95,7 @@ export default class Home extends React.Component {
         <div className="banner">
           <div
             className="banner-img"
-            style={{ backgroundImage: Banner }}
+            style={{ backgroundImage: `url(${Banner})` }}
           >
             <div className="banner-content text-center">
               <h3 className="banner-title">
@@ -132,7 +132,8 @@ export default class Home extends React.Component {
                   <a
                     href="#"
                     className="tab"
-                    onClick={() => {
+                    onClick={(e) => {
+                      if (e && e.preventDefault) e.preventDefault();
                       if (sort === sortTypes.mostFisked) {
                         this.setState({
                           sort: sortTypes.recent,
@@ -147,7 +148,8 @@ export default class Home extends React.Component {
                   <a
                     href="#"
                     className="tab"
-                    onClick={() => {
+                    onClick={(e) => {
+                      if (e && e.preventDefault) e.preventDefault();
                       if (sort === sortTypes.recent) {
                         this.setState({
                           sort: sortTypes.mostFisked,
