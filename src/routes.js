@@ -1,8 +1,12 @@
 // eslint-disable-next-line
 import React from 'react';
+import fetch from 'universal-fetch';
+
+// Local imports
 import Home from './app/component/home';
 import Article from './app/component/article';
 import Layout from './app/component/layout';
+import { getRequestUrl } from './app/utils/search-utils';
 
 export default class Routes {
   // eslint-disable-next-line
@@ -12,6 +16,23 @@ export default class Routes {
         path: '/',
         exact: true,
         layout: Layout,
+        loadData: async () => new Promise(resolve => {
+          const requestUrl = getRequestUrl('/articles', {
+            display_respected_comment: 0,
+            limit: 9,
+            offset: 0,
+            sort: 'created',
+          });
+          fetch(requestUrl, {
+            'content-type': 'application/json',
+            'cache-control': 'no-cache',
+          })
+            .then(res => res.json())
+            .then((response) => {
+              resolve(response);
+            })
+            .catch(err => console.log('err', err));
+        }),
         component: Home,
       },
       {

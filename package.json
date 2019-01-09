@@ -25,6 +25,7 @@
     "react": "^16.7.0-alpha.0",
     "react-cookie": "^3.0.8",
     "react-dom": "^16.7.0-alpha.0",
-    "universal-cookie-express": "^3.0.7"
+    "universal-cookie-express": "^3.0.7",
+    "universal-fetch": "^1.0.0"
   }
 }
