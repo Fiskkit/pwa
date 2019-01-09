@@ -88,8 +88,6 @@ export default class ArticlesGrid extends React.Component {
     const {
       loading, searchParams, meta, sort,
     } = this.state;
-    if (loading) return (<div>Loading...</div>);
-    // console.log('home', this.props);
     return (
       <div id="content" className="site-content">
         <div className="contanier contanier-md">
@@ -99,16 +97,6 @@ export default class ArticlesGrid extends React.Component {
           </div>
           <div className="sorting-tabs">
             <ul>
-              {/*
-              <li>
-                <a
-                  href="#"
-                  className="tab"
-                >
-                  Social Feed
-                </a>
-              </li>
-              */}
               <li className={sort === sortTypes.recent ? 'active' : ''}>
                 <a
                   href="#"
@@ -145,7 +133,12 @@ export default class ArticlesGrid extends React.Component {
           </div>
           <div className="article-section">
             <div className="row">
-              {this.renderFiskBlock()}
+              {
+                loading
+                  ? (
+                    <div>Loading...</div>
+                  ) : this.renderFiskBlock()
+              }
             </div>
             {
               !!_.get(meta, 'count', false)
