@@ -29,6 +29,7 @@ export default class ArticlesGrid extends React.Component {
     this.state = {
       loading: false,
       sort: sortTypes.recent,
+      errorMsg: '',
       articles: _.get(this.props, 'loadedData.articles', []) || [],
       meta: _.get(this.props, 'loadedData.meta', {}) || {},
       searchParams: this.defaultSearchParams,
@@ -68,7 +69,12 @@ export default class ArticlesGrid extends React.Component {
           loading: false,
         });
       })
-      .catch(err => console.log('err', err));
+      .catch(() => {
+        this.setState({
+          loading: false,
+          errorMsg: 'Some went wrong while loading articles. Please try again later',
+        });
+      });
   };
 
   updateSearchParams(searchParams) {
@@ -86,7 +92,7 @@ export default class ArticlesGrid extends React.Component {
 
   render() {
     const {
-      loading, searchParams, meta, sort,
+      loading, searchParams, meta, sort, errorMsg,
     } = this.state;
     return (
       <div id="content" className="site-content">
@@ -132,14 +138,29 @@ export default class ArticlesGrid extends React.Component {
             </ul>
           </div>
           <div className="article-section">
-            <div className="row">
-              {
-                loading
-                  ? (
-                    <div>Loading...</div>
-                  ) : this.renderFiskBlock()
-              }
-            </div>
+            {
+              loading
+              && (
+                <div style={{ textAlign: 'center', marginTop: '5px' }}>Loading...</div>
+              )
+            }
+
+            {
+              !loading && errorMsg
+              && (
+                <div style={{ textAlign: 'center', marginTop: '5px' }}>
+                  {errorMsg}
+                </div>
+              )
+            }
+            {
+              !loading && !errorMsg
+              && (
+                <div className="row">
+                  {this.renderFiskBlock()}
+                </div>
+              )
+            }
             {
               !!_.get(meta, 'count', false)
               && (
