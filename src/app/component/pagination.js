@@ -1,6 +1,3 @@
-/**
-* Created by ankushtiwari on 8/1/19.
-*/
 import React from 'react';
 import _ from 'lodash';
 // eslint-disable-next-line

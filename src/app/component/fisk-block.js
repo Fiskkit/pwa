@@ -1,6 +1,3 @@
-/**
-* Created by ankushtiwari on 8/1/19.
-*/
 import React from 'react';
 import _ from 'lodash';
 import moment from 'moment';
@@ -17,7 +14,6 @@ export default class FiskBlock extends React.Component {
 
   render() {
     const { article } = this.props;
-    // console.log('article', article);
     const createdAt = _.get(article, 'created_at', '');
     return (
       <div className="col col-lg-3 col-md-6">
@@ -37,19 +33,29 @@ export default class FiskBlock extends React.Component {
               </h4>
               <div className="details">
                 <div className="float-left">
-                  <span>
-                    By&nbsp;
-                    {_.get(article, 'author', '-')}
-                  </span>
+                  {
+                    !!_.get(article, 'author', false)
+                    && (
+                      <span>
+                        By&nbsp;
+                          {_.get(article, 'author', '-')}
+                      </span>
+                    )
+                  }
                   <span>
                     {_.get(article, 'publisher', '-')}
                   </span>
                 </div>
                 <div className="float-right">
-                  <span className="time">
-                    {_.get(article, 'read_mins', 0)}
-                    &nbsp;min read
-                  </span>
+                  {
+                    !!_.get(article, 'read_mins', 0)
+                    && (
+                      <span className="time">
+                        {_.get(article, 'read_mins', 0)}
+                            &nbsp;min read
+                      </span>
+                    )
+                  }
                 </div>
               </div>
               <div className="share-details">
