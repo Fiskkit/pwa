@@ -113,7 +113,7 @@ class Article extends React.Component {
                 >
                   <div className="banner-content text-center">
                     <h3 className="banner-title">
-                      Corporate Speech Police Are Not the Answer to Online Hate
+                      {_.get(article, 'title', '')}
                     </h3>
                   </div>
                 </div>
