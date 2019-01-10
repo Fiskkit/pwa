@@ -16,6 +16,8 @@ class Article extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: false,
+      errorMsg: '',
       article: {},
       comments: [],
     };
@@ -29,6 +31,9 @@ class Article extends React.Component {
     const { match } = this.props;
     const requestUrl = `https://api.fiskkit.com/api/v1/articles/${_.get(match, 'params.articleId', '')}`;
 
+    this.setState({
+      loading: true,
+    });
     return fetch(requestUrl, {
       'content-type': 'application/json',
       'cache-control': 'no-cache',
@@ -37,9 +42,16 @@ class Article extends React.Component {
       .then((response) => {
         this.setState({
           article: response.article,
+          loading: false,
+          errorMsg: ''
         });
       })
-      .catch(err => console.log('err', err));
+      .catch(() => {
+        this.setState({
+          loading: false,
+          errorMsg: 'Some went wrong while loading articles. Please try again later',
+        });
+      });
   };
 
   getFisks = () => {
@@ -52,7 +64,6 @@ class Article extends React.Component {
     })
       .then(res => res.json())
       .then(() => {
-        // console.log('response', response);
         // const { articles, meta } = response;
         // this.setState({
         //   articles,
@@ -74,13 +85,22 @@ class Article extends React.Component {
   };
 
   render() {
-    const { article } = this.state;
+    const { article, loading, errorMsg } = this.state;
     const paragraphs = _.get(article, 'paragraphs', []);
     return (
       <div>
         {
+          !loading && errorMsg
+          && (
+            <div style={{ textAlign: 'center', marginTop: '5px' }}>
+              {errorMsg}
+            </div>
+          )
+        }
+        {
           _.isArray(paragraphs)
           && !_.isEmpty(paragraphs)
+          && !loading && !errorMsg
           && (
             _.map(paragraphs, (para, key) => (
               <p key={`paragraph_${key}`}>

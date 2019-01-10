@@ -6,6 +6,7 @@ import fetch from 'universal-fetch';
 import Home from './app/component/home';
 import Article from './app/component/article';
 import Layout from './app/component/layout';
+import ArticlesSkeleton from './app/component/articles-skeleton';
 import { getRequestUrl } from './app/utils/search-utils';
 
 export default class Routes {
@@ -33,6 +34,7 @@ export default class Routes {
             })
             .catch(err => console.log('err', err));
         }),
+        skeleton: ArticlesSkeleton,
         component: Home,
       },
       {

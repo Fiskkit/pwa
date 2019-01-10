@@ -14,7 +14,12 @@ export const getRequestUrl = (url = '/articles', queryParams) => {
   return `${Config.apiUrl}${url}?${query}`;
 };
 
+export const sortTypes = {
+  recent: 'created',
+  mostFisked: 'fisk_count',
+};
 
 export default {
   getRequestUrl,
+  sortTypes,
 };
