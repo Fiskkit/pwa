@@ -105,41 +105,37 @@ class Article extends React.Component {
           && !_.isEmpty(paragraphs)
           && !loading && !errorMsg
           && (
-
-            <div className="page-wrapper">
-              <div className="comments-page">
-                <div className="banner">
-                  <div
-                    className="banner-img"
-                    style={{ backgroundImage: `url(${Banner})` }}
-                  >
-                    <div className="banner-content text-center">
-                      <h3 className="banner-title">
-                        Corporate Speech Police Are Not the Answer to Online Hate
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-                <div className="site-content">
-                  <div className="contanier contanier-sm">
-                    <div className="story-section" style={{ height: '2000px' }}>
-                      {
-                        _.map(paragraphs, (para, key) => (
-                          <div
-                            key={`paragraph_${key}`}
-                            className="paragraph"
-                          >
-                            {this.renderParagraph(para)}
-                          </div>
-                        ))
-                      }
-                    </div>
-                    <div className="comments-overlay open" />
+            <div className="comments-page">
+              <div className="banner">
+                <div
+                  className="banner-img"
+                  style={{ backgroundImage: `url(${Banner})` }}
+                >
+                  <div className="banner-content text-center">
+                    <h3 className="banner-title">
+                      Corporate Speech Police Are Not the Answer to Online Hate
+                    </h3>
                   </div>
                 </div>
               </div>
+              <div className="site-content">
+                <div className="contanier contanier-sm">
+                  <div className="story-section" style={{ height: '2000px' }}>
+                    {
+                      _.map(paragraphs, (para, key) => (
+                        <div
+                          key={`paragraph_${key}`}
+                          className="paragraph"
+                        >
+                          {this.renderParagraph(para)}
+                        </div>
+                      ))
+                    }
+                  </div>
+                  <div className="comments-overlay" />
+                </div>
+              </div>
             </div>
-
           )
         }
         Article
