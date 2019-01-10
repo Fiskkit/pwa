@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 // eslint-disable-next-line
 import { withRouter } from 'react-router-dom';
 
+// Images
+import Banner from '../../resources/images/banner.jpg';
 
 // eslint-disable-next-line
 class Article extends React.Component {
@@ -19,7 +21,7 @@ class Article extends React.Component {
       loading: false,
       errorMsg: '',
       article: {},
-      comments: [],
+      // comments: [],
     };
   }
 
@@ -43,7 +45,7 @@ class Article extends React.Component {
         this.setState({
           article: response.article,
           loading: false,
-          errorMsg: ''
+          errorMsg: '',
         });
       })
       .catch(() => {
@@ -73,16 +75,17 @@ class Article extends React.Component {
       .catch(err => console.log('err', err));
   };
 
-  renderParagraph = (para) => {
-    return !_.isEmpty(para)
-      && (
-        _.map(para, sentenceObj => (
-          <span key={_.get(sentenceObj, 'id', '')}>
-            {_.get(sentenceObj, 'body', '')}
-          </span>
-        ))
-      );
-  };
+  renderParagraph = para => !_.isEmpty(para)
+    && (
+      _.map(para, sentenceObj => (
+        <div
+          key={_.get(sentenceObj, 'id', '')}
+          className="sentence"
+        >
+          {_.get(sentenceObj, 'body', '')}
+        </div>
+      ))
+    );
 
   render() {
     const { article, loading, errorMsg } = this.state;
@@ -102,11 +105,41 @@ class Article extends React.Component {
           && !_.isEmpty(paragraphs)
           && !loading && !errorMsg
           && (
-            _.map(paragraphs, (para, key) => (
-              <p key={`paragraph_${key}`}>
-                {this.renderParagraph(para)}
-              </p>
-            ))
+
+            <div className="page-wrapper">
+              <div className="comments-page">
+                <div className="banner">
+                  <div
+                    className="banner-img"
+                    style={{ backgroundImage: `url(${Banner})` }}
+                  >
+                    <div className="banner-content text-center">
+                      <h3 className="banner-title">
+                        Corporate Speech Police Are Not the Answer to Online Hate
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+                <div className="site-content">
+                  <div className="contanier contanier-sm">
+                    <div className="story-section" style={{ height: '2000px' }}>
+                      {
+                        _.map(paragraphs, (para, key) => (
+                          <div
+                            key={`paragraph_${key}`}
+                            className="paragraph"
+                          >
+                            {this.renderParagraph(para)}
+                          </div>
+                        ))
+                      }
+                    </div>
+                    <div className="comments-overlay open" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
           )
         }
         Article
