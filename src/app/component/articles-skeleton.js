@@ -9,8 +9,14 @@ const renderFiskBlocks = () => {
   for (let i = 0; i < 9; i++) {
     fiskBLocks.push(
       (
-        <div key={`skeleton_${i}`} className="col col-lg-3 col-md-6">
-          <div className="card">
+        <div
+          key={`skeleton_${i}`}
+          className="col col-lg-3 col-md-6"
+        >
+          <div
+            className="card"
+            style={{ backgroundColor: 'LightGrey' }}
+          >
             <div className="card-body">
               <div className="card-img">
                 <div
@@ -36,22 +42,6 @@ const renderFiskBlocks = () => {
                   <div className="float-left">
                   <span className="date">
                   </span>
-                  </div>
-                  <div className="float-right">
-                    <a href="#" className="icon">
-                    <span className="round-icon">
-                      <i className="fa fa-pencil" />
-                    </span>
-                      <span className="count" style={{ marginLeft: '4px' }}>
-                    </span>
-                    </a>
-                    <a href="#" className="icon">
-                    <span className="round-icon">
-                      <i className="fa fa-share" />
-                    </span>
-                      <span className="count" style={{ marginLeft: '4px' }}>
-                    </span>
-                    </a>
                   </div>
                 </div>
               </div>
