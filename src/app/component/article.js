@@ -120,7 +120,7 @@ class Article extends React.Component {
               </div>
               <div className="site-content">
                 <div className="contanier contanier-sm">
-                  <div className="story-section" style={{ height: '2000px' }}>
+                  <div className="story-section" style={{ minHeight: '2000px' }}>
                     {
                       _.map(paragraphs, (para, key) => (
                         <div
