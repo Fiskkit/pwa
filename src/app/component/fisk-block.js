@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 // eslint-disable-next-line
 import { PropTypes } from 'prop-types';
 
-import Logo from '../../resources/images/fiskkit-red-black-logo.png';
+import DefaultImg from '../../resources/images/fiskkit-red-black-logo.png';
 
 // eslint-disable-next-line
 export default class FiskBlock extends React.Component {
@@ -17,15 +17,17 @@ export default class FiskBlock extends React.Component {
   render() {
     const { article } = this.props;
     const createdAt = _.get(article, 'created_at', '');
-    const imgAvailable = !!_.get(article, 'image_url', false);
     return (
       <div className="col col-lg-3 col-md-6">
         <div className="card">
           <div className="card-body">
-            <div className="card-img">
+            <div
+              className="card-img"
+              style={{ backgroundImage: `url(${DefaultImg})` }}
+            >
               <div
-                className={imgAvailable ? 'bg-img' : 'bg-img default-img'}
-                style={{ backgroundImage: `url(${_.get(article, 'image_url', '') || Logo})` }}
+                className="bg-img"
+                style={{ backgroundImage: `url(${_.get(article, 'image_url', '')})` }}
               />
             </div>
             <div className="card-content">
