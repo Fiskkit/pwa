@@ -1,5 +1,5 @@
 import React from 'react';
-import FavIcon from './resources/images/icons/fav-icon.png';
+import FavIcon from './resources/images/icons/favicon.png';
 
 
 export default class Server {
