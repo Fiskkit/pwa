@@ -107,7 +107,7 @@ export default class Routes {
       });
       // eslint-disable-next-line
       routeHandler.getDefaultSeoSchema = () => ({
-        title: 'A better way to discuss the news',
+        title: 'Fiskkit-A better way to discuss the news',
         name: 'Fiskkit',
         description: 'The term fisking was born during the early 2000s when bloggers began reposting articles and then tearing them to shreds - sentence by sentence - from The Independent\'s Robert Fisk, whose views were highly critical of the Bush Administration\'s policies in Iraq. The Guardian aptly defined it as "the practice of savaging an argument and scattering the tattered remnants to the four corners of the internet."',
         type: 'website',
