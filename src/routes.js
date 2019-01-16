@@ -1,6 +1,7 @@
 // eslint-disable-next-line
 import React from 'react';
 import fetch from 'universal-fetch';
+import _ from 'lodash';
 
 // Local imports
 import Home from './app/component/home';
@@ -12,14 +13,15 @@ import { getRequestUrl } from './app/utils/search-utils';
 
 // Images
 import Logo from './resources/images/icons/fiskit_share_image.png';
-import Logo72 from './resources/images/icons/72x72.png';
-import Logo96 from './resources/images/icons/96x96.png';
-import Logo128 from './resources/images/icons/128x128.png';
-import Logo144 from './resources/images/icons/144x144.png';
-import Logo152 from './resources/images/icons/152x152.png';
-import Logo192 from './resources/images/icons/192x192.png';
-import Logo384 from './resources/images/icons/384x384.png';
-import Logo512 from './resources/images/icons/512x512.png';
+import Logo72 from './resources/images/icons/fiskkit-72x72.jpg';
+import Logo96 from './resources/images/icons/fiskkit-96x96.png';
+import Logo128 from './resources/images/icons/fiskkit-128x128.png';
+import Logo144 from './resources/images/icons/fiskkit-144x144.png';
+import Logo152 from './resources/images/icons/fiskkit-152x152.png';
+import Logo192 from './resources/images/icons/fiskkit-192x192.png';
+import Logo384 from './resources/images/icons/fiskkit-384x384.png';
+import Logo512 from './resources/images/icons/fiskkit-512x512.png';
+import Logo1024 from './resources/images/icons/fiskkit-1024x1024.png';
 
 export default class Routes {
   // eslint-disable-next-line
@@ -29,7 +31,7 @@ export default class Routes {
         path: '/',
         exact: true,
         layout: Layout,
-        loadData: async () => new Promise(resolve => {
+        loadData: async () => new Promise((resolve) => {
           const requestUrl = getRequestUrl('/articles', {
             display_respected_comment: 0,
             limit: 9,
@@ -53,6 +55,18 @@ export default class Routes {
         path: '/article/:articleId',
         exact: true,
         layout: Layout,
+        loadData: async ({ match }) => new Promise((resolve) => {
+          const requestUrl = `https://api.fiskkit.com/api/v1/articles/${_.get(match, 'params.articleId', '')}`;
+          fetch(requestUrl, {
+            'content-type': 'application/json',
+            'cache-control': 'no-cache',
+          })
+            .then(res => res.json())
+            .then((response) => {
+              resolve(response);
+            })
+            .catch(err => console.log('err', err));
+        }),
         component: Article,
       },
     ];
@@ -102,6 +116,10 @@ export default class Routes {
           {
             src: Logo512,
             sizes: '512x512',
+          },
+          {
+            src: Logo1024,
+            sizes: '1024x1024',
           },
         ],
       });
