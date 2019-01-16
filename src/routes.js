@@ -11,6 +11,7 @@ import { getRequestUrl } from './app/utils/search-utils';
 
 
 // Images
+import Logo from './resources/images/fiskkit-red-black-logo.png';
 import Logo72 from './resources/images/icons/72x72.png';
 import Logo96 from './resources/images/icons/96x96.png';
 import Logo128 from './resources/images/icons/128x128.png';
