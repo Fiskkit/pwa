@@ -32,7 +32,7 @@ export default class FiskBlock extends React.Component {
                 </Link>
               </h4>
               <div className="details">
-                <div className="float-left">
+                <div className="author-name float-left">
                   {
                     !!_.get(article, 'author', false)
                     && (
