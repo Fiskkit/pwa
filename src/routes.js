@@ -11,7 +11,7 @@ import { getRequestUrl } from './app/utils/search-utils';
 
 
 // Images
-import Logo from './resources/images/fiskkit-red-black-logo.png';
+import Logo from './resources/images/icons/fiskit_share_image.png';
 import Logo72 from './resources/images/icons/72x72.png';
 import Logo96 from './resources/images/icons/96x96.png';
 import Logo128 from './resources/images/icons/128x128.png';
@@ -69,7 +69,7 @@ export default class Routes {
         background_color: '#111',
         theme_color: '#111',
         display: 'standalone',
-        description: 'A better way to discuss the news',
+        description: 'The term fisking was born during the early 2000s when bloggers began reposting articles and then tearing them to shreds - sentence by sentence - from The Independent\'s Robert Fisk, whose views were highly critical of the Bush Administration\'s policies in Iraq. The Guardian aptly defined it as "the practice of savaging an argument and scattering the tattered remnants to the four corners of the internet."',
         icons: [
           {
             src: Logo72,
@@ -107,11 +107,11 @@ export default class Routes {
       });
       // eslint-disable-next-line
       routeHandler.getDefaultSeoSchema = () => ({
-        title: 'Fiskkit',
+        title: 'A better way to discuss the news',
         name: 'Fiskkit',
-        description: 'A better way to discuss the news',
+        description: 'The term fisking was born during the early 2000s when bloggers began reposting articles and then tearing them to shreds - sentence by sentence - from The Independent\'s Robert Fisk, whose views were highly critical of the Bush Administration\'s policies in Iraq. The Guardian aptly defined it as "the practice of savaging an argument and scattering the tattered remnants to the four corners of the internet."',
         type: 'website',
-        url: 'http://fiskkit.com/',
+        // url: 'https://vestra.serveo.net/',
         site_name: 'fiskkit',
         image: Logo,
         meta: [
@@ -121,7 +121,7 @@ export default class Routes {
           },
           {
             name: 'description',
-            content: 'A better way to discuss the news',
+            content: '',
           },
           {
             name: 'theme-color',
