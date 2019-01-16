@@ -45,6 +45,7 @@ export default class Header extends React.Component {
               </a>
             </div>
             <div className="float-right">
+              {/*
               <div className="navbar-account">
                 <a
                   href="#"
@@ -56,6 +57,7 @@ export default class Header extends React.Component {
                   <span className="name">Hello, User</span>
                 </a>
               </div>
+              */}
               <div
                 className="nav-toggle"
                 onClick={() => toggleWrapperClass()}
