@@ -58,6 +58,10 @@
         display: block;
         background-repeat: no-repeat;
         padding-bottom: 48%;
+        &.default-img {
+          background-size: 70%;
+        }
+
     }
 
     .count {
