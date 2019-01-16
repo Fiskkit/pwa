@@ -55,7 +55,7 @@ export default class Routes {
         path: '/article/:articleId',
         exact: true,
         layout: Layout,
-        loadData: async ({ match }) => new Promise((resolve) => {
+        loadData: async ({ match, updateSeo }) => new Promise((resolve) => {
           const requestUrl = `https://api.fiskkit.com/api/v1/articles/${_.get(match, 'params.articleId', '')}`;
           fetch(requestUrl, {
             'content-type': 'application/json',
@@ -63,6 +63,13 @@ export default class Routes {
           })
             .then(res => res.json())
             .then((response) => {
+              const article = _.get(response, 'article', '');
+
+              updateSeo({
+                title: _.get(article, 'title', ''),
+                description: _.map(_.get(article, 'paragraphs', []), p => _.map(p, sentence => _.get(sentence, 'body', '')).join('')).join(''),
+                image: _.get(article, 'image_url', ''),
+              });
               resolve(response);
             })
             .catch(err => console.log('err', err));
