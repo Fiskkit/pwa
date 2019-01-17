@@ -1,6 +1,8 @@
 import React from 'react';
 // eslint-disable-next-line
 import { PropTypes } from 'prop-types';
+// eslint-disable-next-line
+import { Link } from 'react-router-dom';
 
 // Images
 import Logo from '../../resources/images/logo.png';
@@ -25,12 +27,12 @@ export default class Header extends React.Component {
         <div className="site-header">
           <div className="top-bar">
             <div className="float-left">
-              <a
-                href="/"
+              <Link
+                to="/"
                 className="logo"
               >
                 <img src={Logo} alt="Fiskit Logo" />
-              </a>
+              </Link>
               <a
                 href="#"
                 className="header-link"
@@ -72,87 +74,87 @@ export default class Header extends React.Component {
             </div>
             <ul className="nav">
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="#"
                   onClick={(e) => {
                     if (e && e.preventDefault) e.preventDefault();
                   }}
                 >
                   About
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="#"
                   onClick={(e) => {
                     if (e && e.preventDefault) e.preventDefault();
                   }}
                 >
                   Organizations
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="#"
                   onClick={(e) => {
                     if (e && e.preventDefault) e.preventDefault();
                   }}
                 >
                   FAQ
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="#"
                   onClick={(e) => {
                     if (e && e.preventDefault) e.preventDefault();
                   }}
                 >
                   Terms of Service
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="#"
                   onClick={(e) => {
                     if (e && e.preventDefault) e.preventDefault();
                   }}
                 >
                   Our Team
-                </a>
+                </Link>
               </li>
             </ul>
             <div>
               <ul className="nav secondary-nav">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="#"
                     onClick={(e) => {
                       if (e && e.preventDefault) e.preventDefault();
                     }}
                   >
                     My profile
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="#"
                     onClick={(e) => {
                       if (e && e.preventDefault) e.preventDefault();
                     }}
                   >
                     Settings
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="#"
                     onClick={(e) => {
                       if (e && e.preventDefault) e.preventDefault();
                     }}
                   >
                     Logout
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

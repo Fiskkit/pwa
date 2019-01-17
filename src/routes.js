@@ -4,6 +4,7 @@ import fetch from 'universal-fetch';
 import _ from 'lodash';
 
 // Local imports
+import Config from './config/config';
 import Home from './app/component/home';
 import Article from './app/component/article';
 import Layout from './app/component/layout';
@@ -56,7 +57,7 @@ export default class Routes {
         exact: true,
         layout: Layout,
         loadData: async ({ match, updateSeo }) => new Promise((resolve) => {
-          const requestUrl = `https://api.fiskkit.com/api/v1/articles/${_.get(match, 'params.articleId', '')}`;
+          const requestUrl = `${Config.apiUrl}/articles/${_.get(match, 'params.articleId', '')}`;
           fetch(requestUrl, {
             'content-type': 'application/json',
             'cache-control': 'no-cache',
