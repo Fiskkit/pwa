@@ -26,11 +26,8 @@ export default class Header extends React.Component {
           <div className="top-bar">
             <div className="float-left">
               <a
-                href="#"
+                href="/"
                 className="logo"
-                onClick={(e) => {
-                  if (e && e.preventDefault) e.preventDefault();
-                }}
               >
                 <img src={Logo} alt="Fiskit Logo" />
               </a>
