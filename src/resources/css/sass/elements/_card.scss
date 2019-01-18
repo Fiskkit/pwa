@@ -1,0 +1,80 @@
+.card {
+    display: inline-block;
+    width: 100%;
+    background-color: $white;
+    position: relative;
+
+    .card-content {
+        padding: 1em;
+    }
+
+    .card-title {
+        font-size: 1em;
+
+        a {
+            color: $dark-gray;
+        }
+    }
+
+    .details {
+        color: $light-gray;
+        font-size: .875em;
+        font-weight: 600;
+        display: inline-block;
+        width: 100%;
+
+        span {
+            display: block;
+        }
+    }
+
+    .time,
+    .date {
+        color: $dark-gray;
+        font-weight: bold;
+    }
+
+    .time {
+        margin-top: 1em;
+    }
+
+    .round-icon {
+        width: 2em;
+        height: 2em;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid $light-gray;
+        border-radius: 50%;
+        font-size: .875em;
+        color: $light-gray;
+    }
+
+    .bg-img {
+        background-size: cover;
+        height: 100%;
+        background-position: center;
+        display: block;
+        background-repeat: no-repeat;
+        padding-bottom: 48%;
+    }
+
+    .count {
+        color: $light-gray;
+    }
+
+    .share-details {
+        margin-top: 1em;
+        display: inline-block;
+        width: 100%;
+        a.icon{
+            display: inline-block;
+            margin-right: 8px;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+
