@@ -1,9 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-// eslint-disable-next-line
 import PropTypes from 'prop-types';
-
-// Images
 import Banner from '../../resources/images/banner.jpg';
 
 // eslint-disable-next-line
