@@ -1,6 +1,3 @@
-/**
- * Created by ankushtiwari on 2/1/19.
- */
 import _ from 'lodash';
 import Config from '../../config/config';
 
