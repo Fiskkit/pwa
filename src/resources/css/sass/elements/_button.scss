@@ -1,0 +1,17 @@
+.btn {
+    cursor: pointer;
+    padding: .5em 2.5em;
+    background-color: $brand-color;
+    color: $white;
+    text-transform: uppercase;
+    border: 1px solid $brand-color;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 14px;
+    outline: 0;
+}
+.btn-outline {
+    background-color: transparent;
+    color: $brand-color;
+    border-width: 2px;
+}

@@ -1,0 +1,216 @@
+.banner {
+    margin-top: 65px;
+}
+
+.banner-img {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 550px;
+    background-position: center;
+    position: relative;
+
+    &:before {
+        content: '';
+        background-color: rgba(0, 0, 0, .15);
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+    }
+
+    .banner-title {
+        font-size: 2.5em;
+        max-width: 800px;
+        margin: 1em auto;
+        padding: 0 1em;
+    }
+
+    .banner-content {
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 100%;
+        top: 50%;
+        @include transform(translateY(-50%));
+    }
+}
+
+.tagline-section {
+    padding: 3rem 0;
+}
+
+.tagline {
+    color: $light-gray;
+}
+
+.sorting-tabs {
+    padding: 0 1em;
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: inline-block;
+        width: 100%;
+        border-bottom: 1px solid rgba($light-gray, .2);
+
+    }
+
+    li {
+        float: left;
+        padding-right: 1em;
+
+        a {
+            color: $dark-gray;
+            text-transform: uppercase;
+            padding-bottom: .5em;
+            display: inline-block;
+        }
+
+        &.active {
+            a {
+                border-bottom: 2px solid $brand-color;
+                color: $dark-gray;
+                font-weight: bold;
+            }
+        }
+    }
+}
+.author-name {
+  width: 75%;
+  min-height: 60px;
+}
+
+
+.article-section {
+    padding-bottom: 3em;
+
+    .social-feed {
+        .respect-link {
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 1em;
+            display: block;
+        }
+
+        .card {
+            margin-top: 3em;
+        }
+
+        .card-body {
+            padding: 1em;
+        }
+
+        .card-img {
+            width: 100px;
+            display: inline-block;
+            margin-top: -4em;
+        }
+
+        .bg-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            padding-bottom: 0;
+        }
+
+        .card-content {
+            padding: 0;
+        }
+
+        .details {
+            display: inline-flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: .5em 0;
+            width: 100%;
+            font-size: 1em;
+
+            .card-title {
+                margin-top: .5em;
+            }
+        }
+
+        .desc {
+            font-size: .875em;
+        }
+    }
+
+}
+
+.pagination {
+    text-align: center;
+    margin-top: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    a {
+        font-size: 1.5em;
+        color: $light-gray;
+        display: inline-block;
+        line-height: 1;
+    }
+
+    .prev {
+        padding-right: 1em;
+    }
+
+    .next {
+        padding-left: 1em;
+    }
+
+    .disabled {
+        opacity: .5;
+        pointer-events: none;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: inline-block;
+        vertical-align: top;
+
+        li {
+            display: inline-block;
+            vertical-align: top;
+            padding: .25em;
+
+            a {
+                padding: .25em .5em;
+                display: inline-block;
+                font-size: 1.2em;
+                line-height: 1;
+                border-radius: 4px;
+                @include transition(.3s all linear);
+
+                &:hover {
+                    color: $brand-color;
+                }
+            }
+
+            &.current {
+                a {
+                    background-color: $brand-color;
+                    color: $white;
+                }
+            }
+        }
+    }
+}
+
+
+
+@media(max-width: 767px) {
+    .banner-img {
+        height: 415px;
+
+        .banner-title {
+            font-size: 1.2em;
+        }
+    }
+
+}
