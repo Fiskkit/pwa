@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 //import React from 'react';
 import fiskkitredblacklogo from '../../resources/images/fiskkit-red-black-logo.png';
 import logo from '../../resources/images/logo.png';

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../../resources/css/style.scss';
-import Moment from 'react-moment';
-import 'moment-timezone';
+import moment from 'moment';
 import banner from '../../resources/images/banner.jpg';
 import fiskkitredblacklogo from '../../resources/images/fiskkit-red-black-logo.png';
 import img1 from '../../resources/images/img1.png';
@@ -27,11 +26,11 @@ class SampleArticle extends Component {
 
 		let { articleObj } = this.props;
 
-		console.log('12', articleObj);
+		//console.log('12', articleObj);
 
 		return(
 			
-				<div className="col col-lg-3 col-md-6">
+				<div className="col col-lg-3 col-md-6" key={articleObj.id}>
 					<div className="card">
 						<div className="card-body">
 							<div className="card-img">
@@ -52,7 +51,7 @@ class SampleArticle extends Component {
 								</div>
 								<div className="share-details">
 									<div className="float-left">
-										<span className="date">{articleObj.created_at}</span>
+										<span className="date">{moment(articleObj.created_at).format("LL")}</span>
 									</div>
 									<div className="float-right">
 										<a href="#" className="icon">
@@ -82,5 +81,5 @@ class SampleArticle extends Component {
 export default SampleArticle;
 
 
-
+//moment().format("MMM Do YY");
 /*{artDataVal != ""  &&  this.props.artDataVal.articles[0].title}*/

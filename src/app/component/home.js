@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import fetch from 'universal-fetch'
 import Header from './header.js';
+import Pagination from './Pagination.js';
 import ArticlesGrid from './ArticlesGrid.js';
+import '../../resources/css/style.scss';
 //import './font-awesome.min.css';
 import banner from '../../resources/images/banner.jpg';
 import fiskkitredblacklogo from '../../resources/images/fiskkit-red-black-logo.png';
@@ -22,39 +25,40 @@ class Home extends Component {
 		this.state = {
 			sortBy: "created",
 			sidebarOpen: true ,
-			artData: [],	
-			articlesIndex: [],
+			artData: {},	
+			// articlesIndex: [],
 		};
 		//this.repeat = this.repeat.bind(this);
 	}
 
 	componentDidMount() {
-		this.getArticles();
-
-	
+		this.getArticles(`https://api.fiskkit.com/api/v1/articles?display_respected_comments=0&limit=9&offset=0&sort=created`);
 	}	
 
-	componentDidCatch() {
-		this.setState({hasError: true });
+	componentDidUpdate(prevProps, prevState){
+
+		//console.log("previousstate", prevState.sortBy, "this State", this.state.sortBy);
+
+		if (this.state.sortBy === 'mostFisked' && prevState.sortBy === 'created') {
+			this.getArticles(`https://api.fiskkit.com/api/v1/articles?display_respected_comments=0&limit=9&offset=0&sort=fisk_count`);	
+			this.refs.paginationReference.currentPageChange();
+		}
+		else if (this.state.sortBy === 'created' && prevState.sortBy === 'mostFisked') {
+			this.getArticles(`https://api.fiskkit.com/api/v1/articles?display_respected_comments=0&limit=9&offset=0&sort=created`);	
+			this.refs.paginationReference.currentPageChange();
+		}
 	}
 
 	updateSort(e , sortType){
 		e.preventDefault();
 		this.setState({
 			sortBy: sortType
-		});
-		
-	}
+		});	
+	}	
 
-	// getArticlesMostfisked(e) {
-	// 	fetch(`https://api.fiskkit.com/api/v1/articles?display_respected_comments=0&limit=10&offset=0&sort=fisk_count`)
-	// 	.then(response => response.json() )
-	// 	.then(json => this.setState({artDataM_F: json}) )
-	// 	.catch(err => console.log('Articles error' + err ));
-	// }	
 
-	getArticles(e, fetchApi) {
-		fetch(fetchApi)
+	getArticles(requestUrl) {
+		fetch(requestUrl)
 		.then(response => response.json() )
 		.then(json => this.setState({artData: json}) )
 		.catch(err => console.log('Articles error' + err ));
@@ -69,10 +73,19 @@ class Home extends Component {
 	} 
 	
 	render() {
-		const {sortBy, sidebarOpen, artData,  articlesIndex } = this.state;
+		const {sortBy, sidebarOpen, artData } = this.state;
+		let { currentPageChange } = this.props;
 		
-		 const testVar = 'test string';
-		console.log("vatsal", this.state.artData);
+		const testVar = 'test string';
+		// console.log('currentPage', this.props.currentPage);
+		// if (this.state.artData != "") {
+		// 	for (let i = 0; i < this.state.artData.articles.length; i++) {
+		// 	console.log(artData.articles);
+		// 	}
+		// }
+		
+		//console.log("render this.state: ", this.state);
+		//debugger;
 		return (
 
 
@@ -98,11 +111,11 @@ class Home extends Component {
 							</div>
 							<div className="sorting-tabs">
 								<ul>
-									<li className={`${sortBy === 'created' ? 'active' : ''}`} >
-										<a href="#" className="tab" onClick={(e) => {this.updateSort(e, 'created'); this.getArticles(e, `https://api.fiskkit.com/api/v1/articles?display_respected_comments=0&limit=9&offset=0&sort=created`)} }>Most Recent</a>
+									<li className={`${sortBy === 'created' ? 'active' : ''}`}>
+										<a href="#" className="tab" onClick={e => this.updateSort(e, 'created')}>Most Recent</a>
 									</li>
 									<li className={`${sortBy === 'mostFisked' ? 'active' : ''}`}>
-										<a href="#" className="tab" onClick={e => {this.updateSort(e, 'mostFisked'); this.getArticles(e, `https://api.fiskkit.com/api/v1/articles?display_respected_comments=0&limit=10&offset=0&sort=fisk_count`)} }>Most Fisked</a>
+										<a href="#" className="tab" onClick={e => this.updateSort(e, 'mostFisked')}>Most Fisked</a>
 									</li>
 								</ul>
 							</div>
@@ -113,7 +126,22 @@ class Home extends Component {
 								*/}
 							</div>
 							
-							<ArticlesGrid artData = {this.state.artData} />
+							<ArticlesGrid artData={this.state.artData}  getArticles={this.getArticles.bind(this)} sortBy={this.state.sortBy}/>
+								<div className="pagination">	
+									{Object.keys(artData).length !== 0 &&
+										<Pagination ref="paginationReference"
+
+												totalRecords={this.state.artData.meta.count} 
+												pageLimit={9} 
+												pageNeighbours={1} 
+												getArticles={this.getArticles.bind(this)} 
+												sortBy={this.state.sortBy}
+										/> 
+									}
+								</div>	
+								<div>
+								</div>
+
 						</div>
 					</div>
 					</div>
@@ -123,6 +151,13 @@ class Home extends Component {
 	}
 
 }
+
+// Home.propTypes = {
+// 	sortBy: PropTypes.string,
+// 	artData: PropTypes.object,
+// 	sidebarOpen: propTypes.bool,
+// 	currentPageChange: PropTypes.func,
+// };
 
 
 export default Home;

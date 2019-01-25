@@ -21,11 +21,9 @@
     "@pawjs/pawjs": "^2.2.10",
     "@pawjs/sass": "^2.1.7",
     "moment": "^2.23.0",
-    "moment-timezone": "^0.5.23",
-    "node-modules": "^1.0.1",
     "react": "^16.6.3",
-    "react-moment": "^0.8.4",
-    "react-repeat-component": "^1.0.2",
+    "react-pager": "^1.3.3",
+    "react-paginate": "^6.2.1",
     "universal-fetch": "^1.0.0"
   },
   "devDependencies": {
