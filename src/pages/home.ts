@@ -1,4 +1,5 @@
-import { getRequestUrl } from '../app/utils/search-utils';
+import fetch from 'universal-fetch';
+import { requestRecentArticles } from '../app/utils/api';
 
 export default [
   {
@@ -6,14 +7,7 @@ export default [
     exact: true,
     layout: import('../app/component/layout'),
     loadData: async () => {
-      const requestUrl = getRequestUrl('/articles', {
-        display_respected_comment: 0,
-        limit: 9,
-        offset: 0,
-        sort: 'created',
-      });
-      return fetch(requestUrl)
-        .then(r => r.json());
+      return requestRecentArticles();
     },
     component: import('../app/component/home'),
   }

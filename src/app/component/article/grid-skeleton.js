@@ -1,8 +1,5 @@
 import React from 'react';
-import { sortTypes } from '../utils/search-utils';
-// eslint-disable-next-line
-import { PropTypes } from 'prop-types';
-
+import { sortTypes } from '../../utils/api';
 
 const renderFiskBlocks = () => {
   const fiskBLocks = [];

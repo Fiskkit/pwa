@@ -1,15 +1,5 @@
-// eslint-disable-next-line
-import React from 'react';
-import fetch from 'universal-fetch';
-import _ from 'lodash';
-
-// Local imports
-import config from './config';
-import Home from './app/component/home';
-import Article from './app/component/article';
-import Layout from './app/component/layout';
-import ArticlesSkeleton from './app/component/articles-skeleton';
-
+import HomeRoutes from './pages/home.ts';
+import ArticleRoutes from './pages/article.ts';
 
 // Icons for Fiskkit PWA
 import Logo from './resources/images/icons/fiskit_share_image.png';
@@ -24,11 +14,11 @@ import Logo512 from './resources/images/icons/fiskkit-512x512.png';
 import Logo1024 from './resources/images/icons/fiskkit-1024x1024.png';
 
 export default class Routes {
-  // eslint-disable-next-line
-  apply(routeHandler) {
+  description = 'The term fisking was born during the early 2000s when bloggers began reposting articles and then tearing them to shreds - sentence by sentence - from The Independent\'s Robert Fisk, whose views were highly critical of the Bush Administration\'s policies in Iraq. The Guardian aptly defined it as "the practice of savaging an argument and scattering the tattered remnants to the four corners of the internet."';
 
+  apply(routeHandler) {
     routeHandler.setPwaSchema({
-      name: 'Fiskkit',
+      name: 'Fiskkit - A better way to discuss the news',
       short_name: 'Fiskkit',
       dir: 'ltr',
       lang: 'en-US',
@@ -37,7 +27,7 @@ export default class Routes {
       background_color: '#111',
       theme_color: '#111',
       display: 'standalone',
-      description: 'The term fisking was born during the early 2000s when bloggers began reposting articles and then tearing them to shreds - sentence by sentence - from The Independent\'s Robert Fisk, whose views were highly critical of the Bush Administration\'s policies in Iraq. The Guardian aptly defined it as "the practice of savaging an argument and scattering the tattered remnants to the four corners of the internet."',
+      description: this.description,
       icons: [
         {
           src: Logo72,
@@ -81,7 +71,7 @@ export default class Routes {
     routeHandler.setDefaultSeoSchema({
       title: 'Fiskkit - A better way to discuss the news',
       name: 'Fiskkit',
-      description: 'The term fisking was born during the early 2000s when bloggers began reposting articles and then tearing them to shreds - sentence by sentence - from The Independent\'s Robert Fisk, whose views were highly critical of the Bush Administration\'s policies in Iraq. The Guardian aptly defined it as "the practice of savaging an argument and scattering the tattered remnants to the four corners of the internet."',
+      description: this.description,
       type: 'website',
       site_name: 'fiskkit',
       image: Logo,
@@ -117,36 +107,9 @@ export default class Routes {
       ],
     });
 
-    const routes = [
-      {
-        path: '/article/:articleId',
-        exact: true,
-        layout: Layout,
-        loadData: async ({ match, updateSeo }) => new Promise((resolve) => {
-          const requestUrl = `${config.apiUrl}/articles/${_.get(match, 'params.articleId', '')}`;
-          fetch(requestUrl, {
-            'content-type': 'application/json',
-            'cache-control': 'no-cache',
-          })
-            .then(res => res.json())
-            .then((response) => {
-              const article = _.get(response, 'article', '');
-
-              updateSeo({
-                title: _.get(article, 'title', ''),
-                description: _.map(_.get(article, 'paragraphs', []), p => _.map(p, sentence => _.get(sentence, 'body', '')).join('')).join(''),
-                image: _.get(article, 'image_url', ''),
-              });
-              resolve(response);
-            })
-            .catch(err => console.log('err', err));
-        }),
-        component: Article,
-      },
-    ];
-
-    routeHandler.hooks.initRoutes.tapPromise('AppRoutes', async () => {
-      routeHandler.addRoutes(routes);
-    });
+    routeHandler.hooks.initRoutes.tapPromise('AddAppRoutes', async () => routeHandler.addRoutes([
+      ...HomeRoutes,
+      ...ArticleRoutes,
+    ]));
   }
 }
